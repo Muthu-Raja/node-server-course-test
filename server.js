@@ -2,6 +2,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+// heroku uses the default port from env variable, to test in localhost this variable cannot be found so set 3000 if the env variable is not found for testing locally
+const port = process.env.PORT || 3000;
+
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -69,6 +72,6 @@ app.get('/bad', (req, res) => {
 });
 
 // set port number to listen for requests
-app.listen(3000, () => {
-  console.log("Server is up and running on port 3000...");
+app.listen(port, () => {
+  console.log(`Server is up and running on port ${port}...`);
 }); 
